@@ -2,6 +2,7 @@
   "name": "world",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://josephttran.github.io/world/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
