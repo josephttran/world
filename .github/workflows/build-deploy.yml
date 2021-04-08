@@ -8,47 +8,47 @@ on:
     branch:
       - main
 
-  jobs:
-    build:
-      name: build
-      runs-on: ubuntu-latest
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
 
-      steps:
-      - name: Checkout
-      - uses: actions/checkout@v2
-      - name: Install Node.js
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: Install dependencies and build
-      - run: |
-          npm ci
-          npm run build
+    steps:
+    - name: Checkout
+    - uses: actions/checkout@v2
+    - name: Install Node.js
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Install dependencies and build
+    - run: |
+        npm ci
+        npm run build
       
-      - name: Run tests
-        run: npm run test
+    - name: Run tests
+      run: npm run test
       
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: build files
-          path: ./build
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build files
+        path: ./build
 
-    deploy:
-      name: Deploy
-      needs: build
-      runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/main'
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
 
-      steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build files
-          path: ./build
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build files
+        path: ./build
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
