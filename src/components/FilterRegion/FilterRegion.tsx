@@ -8,7 +8,7 @@ const FilterRegion: FunctionComponent<{
   
   return (
     <select name="" id="" onChange={handleFilterRegion}>
-      <option id={selected} >{selected}</option>
+      <option id="" value=""></option>
       {
         regionOptions.map(region => <option key={region} id={region}>{region}</option>)
       }
