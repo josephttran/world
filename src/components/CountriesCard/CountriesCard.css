@@ -1,6 +1,6 @@
 .card {
-  --flag-height: 180px;
-  --card-width: calc(var(--flag-height) * 5 / 3);
+  --card-width: 90vw;
+  --flag-height: calc(var(--card-width) * 3 / 5);
   --radius: 10px;
   width: var(--card-width);
   padding-bottom: 2em;
@@ -23,7 +23,6 @@
   margin-bottom: 0.5em;
 }
 
-
 .country {
   padding: 1em 0;
   font-size: 1.2em;
@@ -32,4 +31,27 @@
 
 .card > div span {
   font-weight: bold;
+}
+
+@media screen and (min-width: 600px) {
+  .card {
+    --flag-height: 180px;
+    --card-width: calc(var(--flag-height) * 5 / 3);
+    --radius: 10px;
+    width: var(--card-width);
+    padding-bottom: 2em;
+    border: 1px solid #bbb;
+    border-radius: var(--radius);
+    box-shadow: 2px 2px 2px #bbb;
+    background-color: var(--surface-background-color);
+    color: var(--surface-color);
+  }
+
+  .filter-container {
+    flex-direction: row;
+  }
+
+  .countries > div {
+    margin: 1vw;
+  }
 }

@@ -1,5 +1,5 @@
 .header {
-  padding: 0 5vw;
+  padding: 1vw 5vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -9,13 +9,13 @@
 }
 
 .header__title {
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 4vmin);
 }
 
 .themeSwitcher {
-  padding: 10px;
+  padding: 0.25em;
   background-color: var(--primary-background-color);
   color: var(--text-color);
   border-radius: 25px;
-  font-size: 1rem;
+  font-size: calc(10px + 2vmin);
 }

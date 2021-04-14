@@ -5,12 +5,21 @@
 }
 
 .filter-container {
-  padding: 0 5vw;
+  padding: 0 4vw;
   display: flex;
+  flex-direction: column;
 }
 
-.search {
-  flex-grow: 1;
+.search input {
+  width: 80vw;
+  margin: 2vw 0;
+  padding: 1rem;
+}
+
+.filter select {
+  width: 50%;
+  margin: 2vw 0;
+  padding: 1rem;
 }
 
 .main {
@@ -25,11 +34,32 @@
 }
 
 .countries > div {
-  margin: 1vw;
+  margin-top: 2vh;
 }
 
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (min-width: 600px) {
+  .filter-container {
+    flex-direction: row;
+  }
+
+  .search {
+    flex-grow: 1;
+  }
+
+  .search input {
+    width: 50%;
+  }
+
+  .filter select {
+    width: 100%;
+  }
+  .countries > div {
+    margin: 1vw;
+  }
 }

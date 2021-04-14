@@ -4,9 +4,13 @@ const SearchInput: FunctionComponent<{
     handleSearch: ChangeEventHandler<HTMLInputElement> 
   }> = ({ handleSearch }) => {
   return (
-    <div className="search">
-      <input type="text" name="search" id="search" placeholder="Search for Country" onChange={handleSearch} />
-    </div>
+    <input 
+      type="text" 
+      name="search-input" 
+      id="search-input" 
+      className="search-input" 
+      placeholder="Search for Country" 
+      onChange={handleSearch} />
   )
 }
 
