@@ -1,11 +1,21 @@
 .header {
-  padding: 0 2vw;
+  padding: 0 5vw;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--primary-background-color);
+  color: var(--primary-color);
 }
 
 .header__title {
   font-size: calc(10px + 2vmin);
+}
+
+.themeSwitcher {
+  padding: 10px;
+  background-color: var(--primary-background-color);
+  color: var(--text-color);
+  border-radius: 25px;
+  font-size: 1rem;
 }

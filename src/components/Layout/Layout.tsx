@@ -13,15 +13,19 @@ const Layout: FunctionComponent<{
   return (
     <div className='container'>
       <Header title='World App'/>
-      <div className='filter-container'>
-        <div className='search'>
-          <SearchInput handleSearch={handleSearch} />
+      <main className="main">
+        <div className='filter-container'>
+          <div className='search'>
+            <SearchInput handleSearch={handleSearch} />
+          </div>
+          <div className='filter'>
+            <FilterRegion handleFilterRegion={handleFilterRegion} selected={selected}/>
+          </div>
         </div>
-        <div className='filter'>
-          <FilterRegion handleFilterRegion={handleFilterRegion} selected={selected}/>
+        <div className="countries">
+          {children}          
         </div>
-      </div>
-      <main className="main">{children}</main>
+      </main>
       <footer className="footer">World</footer>
     </div>
   )
