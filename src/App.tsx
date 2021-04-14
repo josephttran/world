@@ -12,6 +12,7 @@ interface countryData {
 
 function App() {
   const [data, setData] = useState<countryData[]>([]);
+  const [selected, setSelected] = useState("");
 
   const countriesFields: countryData = {  
     flag: "",
@@ -51,8 +52,22 @@ function App() {
     });
   }
 
+  const handleFilterRegion = async (event: ChangeEvent<HTMLSelectElement>) => {
+    const region = event.target.value;
+    let res;
+
+    if (region === "") {
+      res = await fetch('https://restcountries.eu/rest/v2/all');
+    } else {
+      res = await fetch(`https://restcountries.eu/rest/v2/region/${region}`);  
+    }
+
+    const json = await res.json();
+    setData(json);        
+  }
+
   return (
-    <Layout handleSearch={handleCountriesSearch}>
+    <Layout handleSearch={handleCountriesSearch} handleFilterRegion={handleFilterRegion} selected={selected}>
         {
           data.length === 0 
           ? 'No Countries' 
