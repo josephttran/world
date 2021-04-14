@@ -12,21 +12,33 @@ interface countryData {
 
 function App() {
   const [data, setData] = useState<countryData[]>([]);
+
   useEffect(() => {
-    getAllCountryData();
+    const countriesFields: countryData = {  
+      flag: "",
+      name: "",
+      population: -1,
+      region: "",
+      capital: ""
+    };
+
+    getCountryDataFiltered(countriesFields)
+      .then(filteredData => {
+        console.log(filteredData);
+        setData(filteredData)
+      });
   }, [])
 
-  const getAllCountryData = async () => {
-    const res = await fetch('https://restcountries.eu/rest/v2/all');
+  const getCountryDataFiltered = async (obj: countryData): Promise<Array<countryData>> => {
+    let fields = "fields=";
+
+    for (let key in obj) {
+      fields = fields + key + ';';
+    }
+
+    const res = await fetch(`https://restcountries.eu/rest/v2/all?${fields}`);
     const json = await res.json();
-
-    const newData: countryData[] = json.map((obj: any) => {
-      const {flag,name,population,region,capital} = obj;
-      return {flag,name,population,region,capital};
-    });
-
-    setData(newData)
-    // console.log(json);
+    return json;
   }
   
   return (
