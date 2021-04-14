@@ -26,7 +26,7 @@ function App() {
     getCountryDataFiltered(countriesFields)
       .then(filteredData => {
         setData(filteredData)
-      });
+      });// eslint-disable-next-line
   }, [])
 
   const getCountryDataFiltered = async (obj: countryData): Promise<Array<countryData>> => {
