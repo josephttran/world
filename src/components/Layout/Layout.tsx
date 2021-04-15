@@ -1,29 +1,16 @@
-import React, { ChangeEventHandler, FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import './Layout.css';
 import Header from '../Header/Header';
-import SearchInput from '../SearchInput/SearchInput';
-import FilterRegion from '../FilterRegion/FilterRegion';
 
 const Layout: FunctionComponent<{ 
-    children: ReactNode,
-    handleFilterRegion: ChangeEventHandler<HTMLSelectElement>,
-    handleSearch: ChangeEventHandler<HTMLInputElement>,
-    selected: string
-  }> = ({ children, handleSearch, handleFilterRegion, selected }) => {
+    children: ReactNode
+  }> = ({ children }) => {
   return (
     <div className='container'>
       <Header title='World App'/>
       <main className="main">
-        <div className='filter-container'>
-          <div className='search'>
-            <SearchInput handleSearch={handleSearch} />
-          </div>
-          <div className='filter'>
-            <FilterRegion handleFilterRegion={handleFilterRegion} selected={selected}/>
-          </div>
-        </div>
-        <div className="countries">
-          {children}          
+        <div>
+          {children}
         </div>
       </main>
       <footer className="footer">World</footer>
