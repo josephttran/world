@@ -42,6 +42,18 @@ dl, dt, dd {
   margin-right: 1ch;
 }
 
+.country-borders {
+  display: flex;
+  flex-direction: column;
+}
+
+.country-borders button {
+  margin-left: 1em;
+  padding: 1em 2em;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
 @media screen and (min-width: 600px) {
   .country-main {
     display: grid;
@@ -71,5 +83,6 @@ dl, dt, dd {
 
   .country-borders {
     grid-area: country-borders;
+    display: inline-block;
   }
 }

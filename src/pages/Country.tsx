@@ -35,6 +35,13 @@ const Country = () => {
     getAndSetCountryData();
   }, [countryName]);
 
+  const handleBorderClick = (countryCode: string) => async () => {
+    const data = await (await fetch(`https://restcountries.eu/rest/v2/alpha/${countryCode}`)).json();
+    const name = data.name;
+
+    history.push(`/world/country/${name}`);
+  }
+
   return (
     <div className='country-container'>
       <button className="btn-previous" onClick={() => history.goBack()}>
@@ -63,7 +70,9 @@ const Country = () => {
             {
               countryData[0].borders.length === 0 
               ? <dd>{'NONE'}</dd>
-              : <dd>{countryData[0].borders.join(', ')}</dd>
+              : countryData[0].borders.map(countryCode => {
+                return <button key={countryCode} onClick={handleBorderClick(countryCode)}>{countryCode}</button>
+              })
             }
             </dl>
           </div>
