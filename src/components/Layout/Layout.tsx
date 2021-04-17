@@ -9,9 +9,7 @@ const Layout: FunctionComponent<{
     <div className='container'>
       <Header title='World App'/>
       <main className="main">
-        <div>
-          {children}
-        </div>
+        {children}
       </main>
       <footer className="footer">World</footer>
     </div>

@@ -1,0 +1,75 @@
+dl, dt, dd {
+  margin: 0;
+}
+
+.country-container {
+  padding: 1rem;
+}
+
+.btn-previous {
+  width: 120px;
+  height: 40px;
+  margin: 1em 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.country-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.country-flag {
+  margin: 2vh 0;
+  --flag-width: 90vw;
+  width: var(--flag-width);
+  height: calc(var(--flag-width) * 3 / 5);
+}
+.country-header {
+  margin: 0.5rem 0;
+}
+
+.country-info-container {
+  margin-top: 1em;
+}
+
+.country-info-container > * {
+  margin-top: 0.25em;
+}
+
+.country-info-container > dt {
+  float: left;
+  margin-right: 1ch;
+}
+
+@media screen and (min-width: 600px) {
+  .country-main {
+    display: grid;
+    grid-template-areas: 
+    "country-flag country-header country-header"
+    "country-flag info-one info-two"
+    "country-flag info-one info-two"
+    "country-flag country-borders country-borders";
+  }
+
+  .country-flag {
+    --flag-width: 40vw;
+    grid-area: country-flag;
+  }
+
+  .country-header {
+    grid-area: country-header;
+  }
+
+  .info-one {
+    grid-area: info-one;
+  }
+
+  .info-two {
+    grid-area: info-two;
+  }
+
+  .country-borders {
+    grid-area: country-borders;
+  }
+}
