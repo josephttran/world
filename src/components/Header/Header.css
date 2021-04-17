@@ -12,6 +12,10 @@
   font-size: calc(10px + 4vmin);
 }
 
+.header__title:hover {
+  cursor: pointer;
+}
+
 .themeSwitcher {
   padding: 0.25em;
   background-color: var(--primary-background-color);
