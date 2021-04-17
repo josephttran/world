@@ -66,6 +66,7 @@ dl, dt, dd {
 
   .country-flag {
     --flag-width: 40vw;
+    margin-right: 1rem;
     grid-area: country-flag;
   }
 
