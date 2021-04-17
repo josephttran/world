@@ -14,7 +14,7 @@ interface countryData {
 
 const Countries = () => {
   const [data, setData] = useState<countryData[]>([]);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState("Filter by Region");
 
   const countriesFields: countryData = {
     flag: "",
@@ -46,7 +46,7 @@ const Countries = () => {
   const handleCountriesSearch = async (event: ChangeEvent<HTMLInputElement>) => {
     const searchValue = event.target.value;
 
-    if (selected === "") {
+    if (selected === "Filter by Region") {
       getCountryDataFiltered(countriesFields)
       .then(filteredData => {
         const countries = filteredData.filter(countryData => {
@@ -71,15 +71,15 @@ const Countries = () => {
     const region = event.target.value;
     let res;
 
-    if (region === "") {
+    if (region === "Filter by Region") {
       res = await fetch('https://restcountries.eu/rest/v2/all');
     } else {
       res = await fetch(`https://restcountries.eu/rest/v2/region/${region}`);  
-      setSelected(region);
     }
-
+    
     const json = await res.json();
     setData(json);    
+    setSelected(region);
   }
   
   return (
