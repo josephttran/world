@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import CountriesCard from '../components/CountriesCard/CountriesCard';
 import FilterRegion from '../components/FilterRegion/FilterRegion';
 import SearchInput from '../components/SearchInput/SearchInput';
@@ -16,20 +16,23 @@ const Countries = () => {
   const [data, setData] = useState<countryData[]>([]);
   const [selected, setSelected] = useState("Filter by Region");
 
-  const countriesFields: countryData = {
-    flag: "",
-    name: "",
-    population: -1,
-    region: "",
-    capital: ""
-  };
+  const countriesFieldsMemo: countryData = useMemo(() => {
+    const countriesFields: countryData = {
+      flag: "",
+      name: "",
+      population: -1,
+      region: "",
+      capital: ""
+    }    
+    return countriesFields;
+  }, []);
 
   useEffect(() => {
-    getCountryDataFiltered(countriesFields)
-      .then(filteredData => {
-        setData(filteredData)
-      });// eslint-disable-next-line
-  }, [])
+    (async () => {
+      const filteredData = await getCountryDataFiltered(countriesFieldsMemo);
+      setData(filteredData);
+    })();
+  }, [countriesFieldsMemo])
 
   const getCountryDataFiltered = async (obj: countryData): Promise<Array<countryData>> => {
     let fields = "";
@@ -47,7 +50,7 @@ const Countries = () => {
     const searchValue = event.target.value;
 
     if (selected === "Filter by Region") {
-      getCountryDataFiltered(countriesFields)
+      getCountryDataFiltered(countriesFieldsMemo)
       .then(filteredData => {
         const countries = filteredData.filter(countryData => {
           return countryData.name.toLowerCase().includes(searchValue.toLowerCase());

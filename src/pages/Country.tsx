@@ -31,7 +31,7 @@ const Country = () => {
       const json = await data.json();
       setCountryData(json);
     }
-      console.table(countryData)
+
     getAndSetCountryData();
   }, [countryName]);
 
