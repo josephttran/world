@@ -27,16 +27,16 @@ const Country = () => {
 
   useEffect(() => {
     async function getAndSetCountryData() {
-      const data = await fetch(`https://restcountries.eu/rest/v2/name/${countryName}?fullText=true`)
+      const data = await fetch(`https://restcountries.com/v2/name/${countryName}?fullText=true`)
       const json = await data.json();
       setCountryData(json);
     }
-
+      console.table(countryData)
     getAndSetCountryData();
   }, [countryName]);
 
   const handleBorderClick = (countryCode: string) => async () => {
-    const data = await (await fetch(`https://restcountries.eu/rest/v2/alpha/${countryCode}`)).json();
+    const data = await (await fetch(`https://restcountries.com/v2/alpha/${countryCode}`)).json();
     const name = data.name;
 
     history.push(`/world/country/${name}`);
@@ -63,12 +63,12 @@ const Country = () => {
             </dl>
             <dl className='country-info-container info-two'>
               <dt>Top Level Domain: </dt><dd>{countryData[0].topLevelDomain}</dd>
-              <dt>Currencies: </dt><dd>{countryData[0].currencies.length === 0 ? 'none' : countryData[0].currencies[0].name}</dd>
-              <dt>Languages: </dt><dd>{countryData[0].languages.length === 0 ? 'none' : countryData[0].languages[0].name}</dd>          
+              <dt>Currencies: </dt><dd>{countryData[0].currencies === undefined ? 'NONE' : countryData[0].currencies[0].name}</dd>
+              <dt>Languages: </dt><dd>{countryData[0].languages === undefined ? 'NONE' : countryData[0].languages[0].name}</dd>          
             </dl>
             <dl className='country-info-container country-borders'><dt>Borders:</dt> 
             {
-              countryData[0].borders.length === 0 
+              countryData[0].borders === undefined 
               ? <dd>{'NONE'}</dd>
               : countryData[0].borders.map(countryCode => {
                 return <button key={countryCode} onClick={handleBorderClick(countryCode)}>{countryCode}</button>

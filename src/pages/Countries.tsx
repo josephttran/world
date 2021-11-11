@@ -35,10 +35,10 @@ const Countries = () => {
     let fields = "";
 
     for (let key in obj) {
-      fields = fields + key + ';';
+      fields = fields + key + ',';
     }
 
-    const res = await fetch(`https://restcountries.eu/rest/v2/all?fields=${fields}`);
+    const res = await fetch(`https://restcountries.com/v2/all?fields=${fields}`);
     const json = await res.json();
     return json;
   }
@@ -55,7 +55,7 @@ const Countries = () => {
         setData(countries);
       });      
     } else {
-      const res = await fetch(`https://restcountries.eu/rest/v2/region/${selected}`);
+      const res = await fetch(`https://restcountries.com/v2/region/${selected}`);
       const json = await res.json();
       let newData: Array<countryData> = json.map((countryData:any) => {
         const { flag, name, population, region, capital } = countryData;
@@ -72,9 +72,9 @@ const Countries = () => {
     let res;
 
     if (region === "Filter by Region") {
-      res = await fetch('https://restcountries.eu/rest/v2/all');
+      res = await fetch('https://restcountries.com/v2/all');
     } else {
-      res = await fetch(`https://restcountries.eu/rest/v2/region/${region}`);  
+      res = await fetch(`https://restcountries.com/v2/region/${region}`);  
     }
     
     const json = await res.json();
